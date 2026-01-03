@@ -1,6 +1,7 @@
 baseURL = "https://intiramisu.github.io/blog/"
 languageCode = "ja"
 defaultContentLanguage = "ja"
+hasCJKLanguage = true  # 日本語の文字カウントを改善
 title = "備忘録"
 theme = "papermod"
 

@@ -9,6 +9,7 @@ resources/_gen/
 hugo_stats.json
 
 # Claude instructions (private)
+.claude/
 CLAUDE.md
 
 # OS generated files

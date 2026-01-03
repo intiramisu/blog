@@ -1,0 +1,26 @@
+{{- /* Footer custom content area start */ -}}
+<style>
+.twitter-tweet-rendered {
+  background: transparent !important;
+  overflow: hidden !important;
+  border-radius: 16px !important;
+}
+.twitter-tweet iframe {
+  border: none !important;
+  clip-path: inset(1px 1px 1px 2px round 16px) !important;
+}
+.paginav .title {
+  font-size: 0.9rem;
+}
+.paginav a > span:not(.title) {
+  font-size: 0.9rem;
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.twitter-tweet').forEach(function(tweet) {
+    tweet.setAttribute('data-theme', 'dark');
+  });
+});
+</script>
+{{- /* Footer custom content area end */ -}}
