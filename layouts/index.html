@@ -1,0 +1,30 @@
+{{ define "main" }}
+<!-- 背景エフェクト（固定） -->
+<div class="bg-effects">
+  <div class="shape shape-1"></div>
+  <div class="shape shape-2"></div>
+  <div class="shape shape-3"></div>
+  <canvas id="particles-canvas"></canvas>
+</div>
+
+<!-- ヒーローコンテンツ -->
+<div class="hero">
+  <div class="hero-content">
+    <h1 class="hero-title">
+      {{ range (split site.Title "") }}
+      <span class="letter">{{ . }}</span>
+      {{ end }}
+    </h1>
+    <p class="hero-subtitle">{{ site.Params.description }}</p>
+    <div class="hero-social">
+      {{- range site.Params.socialIcons }}
+      <a href="{{ .url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ .name }}" class="social-icon">
+        {{- partial "svg.html" . }}
+      </a>
+      {{- end }}
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/animejs/dist/bundles/anime.umd.min.js"></script>
+<script src="/js/hero-animation.js"></script>
+{{ end }}
