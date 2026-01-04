@@ -1,4 +1,7 @@
 {{ define "main" }}
+<!-- スクロールで暗くなるオーバーレイ -->
+<div class="darkness-overlay"></div>
+
 <!-- 背景エフェクト（固定） -->
 <div class="bg-effects">
   <div class="shape shape-1"></div>
@@ -7,24 +10,44 @@
   <canvas id="particles-canvas"></canvas>
 </div>
 
-<!-- ヒーローコンテンツ -->
+<!-- ファーストビュー -->
 <div class="hero">
-  <div class="hero-content">
-    <h1 class="hero-title">
-      {{ range (split site.Title "") }}
-      <span class="letter">{{ . }}</span>
-      {{ end }}
-    </h1>
-    <p class="hero-subtitle">{{ site.Params.description }}</p>
-    <div class="hero-social">
-      {{- range site.Params.socialIcons }}
-      <a href="{{ .url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ .name }}" class="social-icon">
-        {{- partial "svg.html" . }}
-      </a>
-      {{- end }}
-    </div>
+  <div class="clock-moon-container">
+    <div class="current-time" id="current-time"></div>
+    <canvas id="moon-canvas" width="120" height="120"></canvas>
   </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/animejs/dist/bundles/anime.umd.min.js"></script>
+
+<!-- SNSセクション -->
+<section class="sns-section">
+  <div class="sns-container">
+    {{- range site.Params.socialIcons }}
+    <a href="{{ .url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ .name }}" class="sns-icon-large">
+      {{- partial "svg.html" . }}
+      <span class="sns-label">{{ .name }}</span>
+    </a>
+    {{- end }}
+  </div>
+</section>
+
+<!-- 最新記事セクション -->
+<section class="posts-section">
+  <h2 class="posts-section-title">Latest Posts</h2>
+  <div class="posts-container">
+    {{- range first 3 (where site.RegularPages "Section" "posts") }}
+    <a href="{{ .Permalink }}" class="post-card">
+      <div class="post-card-content">
+        <h3 class="post-card-title">{{ .Title }}</h3>
+        <time class="post-card-date">{{ .Date.Format "2006.01.02" }}</time>
+        {{- if .Description }}
+        <p class="post-card-desc">{{ .Description }}</p>
+        {{- end }}
+      </div>
+    </a>
+    {{- end }}
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/animejs@4/dist/anime.iife.min.js"></script>
 <script src="{{ "js/hero-animation.js" | relURL }}"></script>
 {{ end }}
