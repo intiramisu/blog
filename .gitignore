@@ -2,6 +2,9 @@
 public/
 resources/_gen/
 
+# Node.js
+node_modules/
+
 # Hugo lock file
 .hugo_build.lock
 
