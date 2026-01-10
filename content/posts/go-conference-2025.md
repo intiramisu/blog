@@ -3,7 +3,7 @@ title: "【参加レポート】Go Conference 2025"
 date: 2025-09-29T22:50:50+09:00
 draft: false
 description: "Go Conference 2025の参加レポート"
-tags: ["参加レポート", "Go"]
+tags: ["参加レポート", "Go", "AIL-1"]
 ail: 1
 ---
 

@@ -3,8 +3,8 @@ title: "【個人メモ】Claude Codeの作者Borisに学ぶ、13の活用Tips"
 description: "Boris氏のツイート機械和訳とその所感"
 date: 2026-01-06
 draft: false
-tags: ["Claude Code", "AI", "開発ツール"]
-ail: 3
+tags: ["Claude Code", "AI", "開発ツール", "AIL-4"]
+ail: 4
 ---
 
 Claude Codeの作者であるBoris氏が、自身のClaude Code活用法をX（旧Twitter）で共有していた。これが非常に参考になったので、翻訳と所感をまとめてみる。
