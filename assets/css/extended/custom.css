@@ -1,3 +1,193 @@
+/* ===== Search Modal ===== */
+/* Search button in header menu */
+#menu li:has(#search-btn) {
+  display: flex;
+  align-items: center;
+}
+
+#search-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  color: var(--secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+  line-height: 1;
+}
+
+#search-btn svg {
+  display: block;
+}
+
+#search-btn:hover {
+  color: var(--primary);
+}
+
+.search-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 10vh;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.search-modal[aria-hidden="false"] {
+  opacity: 1;
+  visibility: visible;
+}
+
+.search-modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+}
+
+.search-modal-container {
+  position: relative;
+  width: 90%;
+  max-width: 600px;
+  max-height: 70vh;
+  background: var(--theme);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  transform: translateY(-20px) scale(0.95);
+  transition: transform 0.2s ease;
+}
+
+.search-modal[aria-hidden="false"] .search-modal-container {
+  transform: translateY(0) scale(1);
+}
+
+.search-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.search-input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 1.1rem;
+  color: var(--primary);
+  font-family: inherit;
+}
+
+.search-input::placeholder {
+  color: var(--secondary);
+  opacity: 0.6;
+}
+
+.search-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  color: var(--secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.search-close:hover {
+  color: var(--primary);
+}
+
+.search-modal-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.5rem;
+}
+
+.search-results {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.search-result-item {
+  margin: 0;
+  padding: 0;
+}
+
+.search-result-item a {
+  display: block;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--primary);
+  transition: background 0.15s ease;
+}
+
+.search-result-item a:hover,
+.search-result-item.focused a {
+  background: var(--code-bg);
+}
+
+.search-result-title {
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.search-result-summary {
+  font-size: 0.85rem;
+  color: var(--secondary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.search-empty {
+  text-align: center;
+  padding: 2rem;
+  color: var(--secondary);
+}
+
+.search-modal-footer {
+  padding: 0.75rem 1.25rem;
+  border-top: 1px solid var(--border);
+}
+
+.search-hint {
+  font-size: 0.75rem;
+  color: var(--secondary);
+  opacity: 0.7;
+}
+
+.search-hint kbd {
+  display: inline-block;
+  padding: 0.15rem 0.4rem;
+  font-size: 0.7rem;
+  font-family: inherit;
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin: 0 0.15rem;
+}
+
+/* Hide body scroll when modal is open */
+body.search-open {
+  overflow: hidden;
+}
+
 /* ===== Fonts ===== */
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap');
 

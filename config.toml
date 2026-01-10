@@ -18,6 +18,16 @@ theme = "papermod"
   showCodeCopyButtons = true  # コードコピーボタン
   showToc = true  # 目次表示
 
+  # 検索設定（Fuse.js）
+  [params.fuseOpts]
+    isCaseSensitive = false
+    shouldSort = true
+    location = 0
+    distance = 1000
+    threshold = 0.4
+    minMatchCharLength = 2
+    keys = ["title", "permalink", "summary", "content", "tags"]
+
   # SNS リンク
   [[params.socialIcons]]
     name = "instagram"
