@@ -38,7 +38,7 @@
     return new Promise((resolve, reject) => {
       const script = document.createElement('script');
       script.src = 'https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js';
-      script.integrity = 'sha256-mFHW+hOJ8mKl/tiRS1IjY0mGQnEu6oTDYiFoZEYvpaI=';
+      script.integrity = 'sha256-42IbU8t3tOwwbexB7ZVRHm3YDRf65aBPPjRtIUufj5I=';
       script.crossOrigin = 'anonymous';
       script.onload = () => {
         fuseLoaded = true;
