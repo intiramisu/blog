@@ -32,7 +32,6 @@ function loadMoonTexture() {
     const img = new Image();
     // crossOrigin を外す（ローカル開発時の問題回避）
     img.onload = () => {
-      console.log('Moon texture loaded:', img.width, 'x', img.height);
       const canvas = document.createElement('canvas');
       canvas.width = img.width;
       canvas.height = img.height;
@@ -40,8 +39,6 @@ function loadMoonTexture() {
       ctx.drawImage(img, 0, 0);
       moonTextureData = ctx.getImageData(0, 0, img.width, img.height);
       moonTexture = img;
-      console.log('Moon texture data ready, sample pixel:',
-        moonTextureData.data[0], moonTextureData.data[1], moonTextureData.data[2]);
       resolve();
     };
     img.onerror = (e) => {
