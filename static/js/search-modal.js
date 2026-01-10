@@ -1,10 +1,11 @@
-// Search Modal with Fuse.js
+// Search Modal with Fuse.js (lazy-loaded)
 (function() {
   'use strict';
 
   let fuse = null;
   let searchData = null;
   let currentFocus = -1;
+  let fuseLoaded = false;
 
   // DOM Elements
   const modal = document.getElementById('search-modal');
@@ -27,6 +28,27 @@
     keys: ['title', 'summary', 'content', 'tags']
   };
 
+  // Load Fuse.js dynamically
+  function loadFuseJs() {
+    if (fuseLoaded || typeof Fuse !== 'undefined') {
+      fuseLoaded = true;
+      return Promise.resolve();
+    }
+
+    return new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js';
+      script.integrity = 'sha256-mFHW+hOJ8mKl/tiRS1IjY0mGQnEu6oTDYiFoZEYvpaI=';
+      script.crossOrigin = 'anonymous';
+      script.onload = () => {
+        fuseLoaded = true;
+        resolve();
+      };
+      script.onerror = reject;
+      document.head.appendChild(script);
+    });
+  }
+
   // Load search index
   function loadSearchIndex() {
     if (searchData) return Promise.resolve();
@@ -34,13 +56,14 @@
     const baseUrl = document.querySelector('link[rel="canonical"]')?.href || window.location.origin;
     const indexUrl = new URL('index.json', baseUrl).href;
 
-    return fetch(indexUrl)
+    return loadFuseJs()
+      .then(() => fetch(indexUrl))
       .then(res => res.json())
       .then(data => {
         searchData = data;
         fuse = new Fuse(data, fuseOptions);
       })
-      .catch(err => console.error('Failed to load search index:', err));
+      .catch(err => console.error('Failed to load search:', err));
   }
 
   // Open modal

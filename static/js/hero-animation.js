@@ -49,7 +49,7 @@ function loadMoonTexture() {
       resolve();
     };
     // baseURL を考慮したパス（/blog/ サブディレクトリ対応）
-    img.src = '/blog/images/moon-texture.jpg';
+    img.src = '/blog/images/moon-texture.webp';
   });
 }
 
@@ -312,7 +312,18 @@ function initParticles() {
     }
   }
 
-  function animate() {
+  // FPS limiting (30fps to reduce CPU usage)
+  const targetFPS = 30;
+  const frameInterval = 1000 / targetFPS;
+  let lastFrameTime = 0;
+
+  function animate(currentTime) {
+    requestAnimationFrame(animate);
+
+    const deltaTime = currentTime - lastFrameTime;
+    if (deltaTime < frameInterval) return;
+    lastFrameTime = currentTime - (deltaTime % frameInterval);
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawConnections();
 
@@ -335,13 +346,11 @@ function initParticles() {
       if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
       if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
     });
-
-    requestAnimationFrame(animate);
   }
 
   window.addEventListener('resize', init);
   init();
-  animate();
+  requestAnimationFrame(animate);
 }
 
 // ===== 背景シェイプアニメーション =====
